@@ -1,0 +1,29 @@
+﻿@model User
+
+@{
+    Layout = "_Layout2";
+    ViewData["Title"] = "Login Page";
+
+}
+
+<title>Login </title>
+<div class="row mt-5">
+    <div class="offset-md-4 col-md-4">
+        <div class="login-circle text-center"><i class="fa fa-user-circle fa-5x"></i></div>
+        <div class="login-form">
+            <h4 class="text-center text-white"><b>Login</b></h4>
+            <form method="post" action="/user/login">
+                <p class="text-danger">@ViewBag.errorMassage</p>
+                <div class="form-group">
+                    <label asp-for="email"><b>Email address</b></label>
+                    <input asp-for="email" type="email" class="form-control1" placeholder="Enter email" required>
+                </div>
+                <div class="form-group">
+                    <label asp-for="password"><b>Password</b></label>
+                    <input asp-for="password" type="password" class="form-control1" placeholder="password">
+                </div>
+                <button type="submit" class="btn btn-danger btn-block"><b>Login</b></button>
+            </form>
+        </div>
+    </div>
+</div>

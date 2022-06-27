@@ -1,0 +1,187 @@
+@model Review
+
+@{
+    ViewData["Title"] = "Movie Details Page";
+
+    Movie movie = ViewBag.movie;
+    List<Review> comments = ViewBag.comments;
+    List<Review> rates = ViewBag.rates;
+
+    String img_source = movie.movieName.ToLower().Replace(" ", "_") + "_" + movie.year + ".jpg";
+}
+
+<div class="bg-white">
+    <div class="row ml-5 mr-5 mt-3">
+        <div class="col-sm-4 p-4">
+            <img class="img-fluid rounded w-100" src="~/pic/Movie-pics/@img_source" />
+        </div>
+
+        <div class="col-8 p-4">
+            <h1 class="pb-5 pt-1">
+                @movie.movieName
+            </h1>
+
+            <h4 class="mb-4">
+                @movie.categories
+            </h4>
+
+            <h4 class="mb-4">
+                Director: @movie.director
+            </h4>
+
+            <h4 class="mb-4">
+                Year: @movie.year
+            </h4>
+
+            @if (!movie.viewStatus.Equals("coming soon"))
+            {
+                <h4 class="mb-4">
+                    Rate: @movie.rate
+                </h4>
+            }
+
+            <h4 class="mb-4">
+                Duration: @movie.duration minutes
+            </h4>
+
+            @if (movie.viewStatus.Equals("in the vision"))
+            {
+                <div class="btn btn-info ml-5">
+                    <a href="/Ticket/BuyTicket?movie_ID=@movie.movie_ID">
+                        Buy Ticket
+                    </a>
+                </div>
+            }
+
+            <div class="btn btn-info ml-5" id="trailer-btn">
+                <a href="#">
+                    Trailer
+                </a>
+            </div>
+
+            <br /><br />
+
+            <iframe id="trailer" width="900" height="508" src="https://www.youtube.com/embed/@movie.trailerLink" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+        </div>
+
+    </div>
+
+    <div class="row m-4 ml-5 mr-5">
+        <p>@movie.description</p>
+    </div>
+
+    @if (!movie.viewStatus.Equals("coming soon"))
+    {
+        <div class="col-12 p-4">
+            <div class="p-4 border">
+                <h3 align="center"><b>Comments</b></h3>
+
+                @foreach (Review comment in comments)
+                {
+                    if (comment.isSpoiler)
+                    {
+                        <input class="p-3" type="checkbox" name="spoiler-one" id="@comment.comment_ID" onclick="makeVisible(id)">
+                        <span>Show Spoiler</span>
+                    }
+
+                    <div class="d-flex p-2 mb-2 border justify-content-between comment-box">
+                        <div class="p-3 mr-5 border" style="width:200px;">
+                            @comment.nickName
+                        </div>
+
+                        @if (comment.isSpoiler)
+                        {
+                            <p class="col-9 p-3 invisible" id="c @comment.comment_ID">
+                                @comment.commentText
+                            </p>
+                        }
+                        else
+                        {
+                            <p class="col-9 p-3 visible" id="c @comment.comment_ID">
+                                @comment.commentText
+                            </p>
+                        }
+
+                    </div>
+
+                }
+                <h3 align="center"><b>Rates</b></h3>
+
+                @foreach (Review rate in rates)
+                {
+                    <div class="d-flex p-2 mb-2 border justify-content-between comment-box">
+                        <div class="p-3 mr-5 border" style="width:200px;">
+                            @rate.nickName
+                        </div>
+                        <p class="p-3 ml-5 border" style="width:100px;">
+                            Rate: @rate.rate
+                        </p>
+                    </div>
+                }
+
+                @if (BIA_Cinema_Ticket.Controllers.UserController.currentUser != null)
+                {
+                    if (ViewBag.watched)
+                    {
+                        <form method="post" action="makeComment" class="p-4">
+                            <div class="form-group pt-4">
+                                <label>Comment*</label>
+
+                                <textarea asp-for="commentText" class="form-control" name="commentText" id="commentText" placeholder="" cols="3" rows="2" required></textarea>
+                            </div>
+
+                            <div class="lister-filter-group">
+                                <label class="faceter-facet">
+                                    <input asp-for="isSpoiler" name="isSpoiler" type="checkbox">
+                                    <span>Contains Spoilers</span>
+                                </label>
+                            </div>
+
+                            <div>
+                                <button type="submit" class="btn btn-info ml-5">
+                                    Send comment
+                                </button>
+                            </div>
+                        </form>
+
+                        <div class="col-6 p-4 d-flex">
+                            <form method="post" action="rate">
+                                <div class="rate">
+                                    <input asp-for="rate" type="radio" id="star10" name="rate" value="10" />
+                                    <label for="star10" title="text">10 stars</label>
+                                    <input asp-for="rate" type="radio" id="star9" name="rate" value="9" />
+                                    <label for="star9" title="text">9 stars</label>
+                                    <input asp-for="rate" type="radio" id="star8" name="rate" value="8" />
+                                    <label for="star8" title="text">8 stars</label>
+                                    <input asp-for="rate" type="radio" id="star7" name="rate" value="7" />
+                                    <label for="star7" title="text">7 stars</label>
+                                    <input asp-for="rate" type="radio" id="star6" name="rate" value="6" />
+                                    <label for="star6" title="text">6 star</label>
+                                    <input asp-for="rate" type="radio" id="star5" name="rate" value="5" />
+                                    <label for="star5" title="text">5 stars</label>
+                                    <input asp-for="rate" type="radio" id="star4" name="rate" value="4" />
+                                    <label for="star4" title="text">4 stars</label>
+                                    <input asp-for="rate" type="radio" id="star3" name="rate" value="3" />
+                                    <label for="star3" title="text">3 stars</label>
+                                    <input asp-for="rate" type="radio" id="star2" name="rate" value="2" />
+                                    <label for="star2" title="text">2 stars</label>
+                                    <input asp-for="rate" type="radio" id="star1" name="rate" value="1" />
+                                    <label for="star1" title="text">1 star</label>
+                                </div>
+
+                                <button type="submit" class="btn btn-info ml-5 pt-2">Rate</button>
+                            </form>
+
+                        </div>
+
+                    }
+
+                }
+
+            </div>
+
+        </div>
+    }
+
+</div>

@@ -1,0 +1,80 @@
+﻿@model User
+@{
+    Layout = "_Layout2";
+    ViewData["Title"] = "Sign In Page";
+}
+<title>Sign in </title>
+<div class="row">
+    <div class="offset-md-3 col-6">
+        <div class="signin-circle text-center"><i class="fa fa-user-circle fa-5x"></i></div>
+        <div class="signin-form">
+            <h2 class="text-center text-white"><b>Sign In</b></h2>
+            <form method="post" action="/user/register">
+                <div class="row justify-content-between">
+                    <div class="form-group col-6">
+                        <label asp-for="name"><b>Name *</b></label>
+                        <input asp-for="name" class="form-control1" type="text" name="name" id="name" placeholder="Enter name" required>
+                    </div>
+                    <div class="form-group col-6">
+                        <label asp-for="surname"><b>Surname *</b></label>
+                        <input asp-for="surname" class="form-control1" type="text" name="surname" id="surname" placeholder="Enter surname" required>
+                    </div>
+                    <div class="form-group col-6">
+                        <label asp-for="nickName"><b>Nickname *</b></label>
+                        <input asp-for="nickName" class="form-control1" type="text" name="nickname" id="nickname" placeholder="Enter Nickname" required>
+                    </div>
+                    <div class="form-group pr-lg-5">
+                        <label asp-for="gender"><b>Gender *</b></label><br />
+                        <div class="form-check form-check-inline pr-4">
+                            <input asp-for="gender" class="form-check-input" type="radio" name="gender" id="female" value="false" required>
+                            <label class="form-check-label" for="female">Female</label>
+                        </div>
+                        <div class="form-check form-check-inline pr-lg-5">
+                            <input asp-for="gender" class="form-check-input" type="radio" name="gender" id="male" value="true" required>
+                            <label class="form-check-label" for="male">Male</label>
+                        </div>
+                    </div>
+                    <div class="form-group col-6">
+                        <label asp-for="email"><b>Email address *</b></label>
+                        <input asp-for="email" class="form-control1" type="email" id="email" placeholder="Enter email" required>
+                    </div>
+                    <div class="form-group col-6">
+                        <label asp-for="phoneNumber"><b>Phone *</b></label>
+                        <input asp-for="phoneNumber" class="form-control1" type="tel" id="tel" placeholder="Enter phone number" pattern="[0-9]{10}" required>
+                        <small class="form-text text-muted">1234567890</small>
+                    </div>
+                    <div class="form-group col-6">
+                        <label asp-for="password"><b>Password *</b></label>
+                        <input asp-for="password" class="form-control1" type="password" id="password" placeholder="Password" required>
+                    </div>
+                    <div class="form-group col-6">
+                        <label><b>Confirm Password *</b></label>
+                        <input class="form-control1" type="password" id="confirm_password" placeholder="Confirm Password" required>
+                    </div>
+                    <div class="form-group col-6">
+                        <label asp-for="birthday"><b>Birthday *</b></label>
+                        <input asp-for="birthday" class="form-control1" type="date" id="birthday" placeholder="dd.mm.yyyy" required>
+                    </div>
+                    <script>
+                        var password = document.getElementById("password")
+                            , confirm_password = document.getElementById("confirm_password");
+
+                        function validatePassword() {
+                            if (password.value != confirm_password.value) {
+                                confirm_password.setCustomValidity("Passwords Don't Match");
+                            } else {
+                                confirm_password.setCustomValidity('');
+                            }
+                        }
+
+                        password.onchange = validatePassword;
+                        confirm_password.onkeyup = validatePassword;</script>
+                </div>
+                <br />
+                <small class="form-text text-muted ml-3">* <u><em>Required field</em></u></small>
+                <small class="form-text text-muted ml-2">** <u><em>We'll never share your information with anyone else. (Except for nickname)</em></u></small> <br />
+                <button type="submit" class="btn btn-danger btn-block"><b>Sign In</b></button>
+            </form>
+        </div>
+    </div>
+</div>

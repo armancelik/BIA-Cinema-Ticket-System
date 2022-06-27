@@ -1,0 +1,58 @@
+﻿@{
+    Layout = "_User";
+    List<Movie> WatchedMoviesPage = ViewBag.WatchedMoviesPage;
+    string[] tableHeaders = new string[]{
+        "Image","Name","Category","Duration","Director","Year","Rate","View Status","Trailer"
+    };
+    ViewData["Title"] = "Watched Movies Page";
+}
+<div class="container-fluid px-4">
+    <div class="card mb-4 mt-4">
+        <div class="card-header">
+            <i class="fas fa-table me-1"></i>
+            <b>List Of Watched Movies</b>
+        </div>
+        <div class="card-body">
+            <div class="table">
+                <table id="datatablesSimple">
+                    <thead>
+                        <tr>
+                            @foreach (var table_header in tableHeaders)
+                            {
+                                <th>@table_header</th>
+                            }
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var movie in WatchedMoviesPage)
+                        {
+                            <tr>
+                                <td>
+                                    @{
+                                        String img_source = movie.movieName.ToLower().Replace(" ", "_") + "_" + movie.year + ".jpg";
+                                    }
+                                    <img class="img-fluid rounded w-100" style="width:5rem;height:10rem;" src="~/pic/Movie-pics/@img_source" />
+                                </td>
+                                <td>@movie.movieName</td>
+                                <td>
+                                    @movie.categories
+                                </td>
+                                <td>@movie.duration</td>
+                                <td>@movie.director</td>
+                                <td>@movie.year</td>
+                                <td>@movie.rate</td>
+                                <td>@movie.viewStatus</td>
+                                <td>@movie.trailerLink</td>
+                                <td>
+                                    <a href="/User/AddFavoriteMovies?movie_ID=@movie.movie_ID" 
+                                       class="btn btn-primary">Add to favorites</a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+

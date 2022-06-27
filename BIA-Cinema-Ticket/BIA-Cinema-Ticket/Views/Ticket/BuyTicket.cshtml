@@ -1,0 +1,99 @@
+﻿@model Ticket
+@{
+    String movieName = ViewBag.movieName;
+    List<Cinema> cinemas = ViewBag.cinemas;
+    List<string> cities = ViewBag.cities;
+}
+<div align="center">
+    <div class="card mt-3" style="width:55%">
+        <div class="card-header">
+            <h4 class="card-title"><b>Buy Tickets</b></h4>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-12 mt-4" align="center">
+
+                    <form class="col-6 ml-4" method="post" action="/ticket/chooseseat">
+                        
+                        <div>
+                            <h3 class="card-title mb-4">@movieName</h3>
+                        </div>
+
+                        <div class="form-group" onclick="cinema()" id="cityGroup">
+                            <label for="exampleFormControlSelect1">City</label>
+                            <select class="form-control" id="cities">
+
+                                @foreach (string city in cities)
+                                {
+                                    <option value="@city">@city</option>
+                                }
+
+                            </select>
+
+                        </div>
+
+                        <div class="form-group" id="cinemaGroup">
+
+                            <label for="exampleFormControlSelect2">Cinema</label>
+                            <select asp-for="cinema_ID" class="form-control" id="cinemas">
+                                @foreach (Cinema cinema in cinemas)
+                                {
+                                    <option class="cinema" value="@cinema.cinema_ID" id="@cinema.city">@cinema.cinemaName</option>
+                                }
+
+                            </select>
+                        </div>
+
+                        <div class="form-group mt-1" id="calender">
+
+                            @{
+                                String[] splitedDay = System.DateTime.Today.ToString("d").Split(".");
+                                String startdate = splitedDay[2] + "-" + splitedDay[1] + "-" + splitedDay[0];
+                                int year = Convert.ToInt32(splitedDay[2]);
+                                int month = Convert.ToInt32(splitedDay[1]) + 2;
+                                int day = Convert.ToInt32(splitedDay[0]);
+                                if (month > 12)
+                                {
+                                    month = month - 12;
+                                    year += 1;
+                                }
+                                String month_str = "";
+                                if (month < 10)
+                                {
+                                    month_str = "0" + month;
+                                }
+                                else month_str = "" + month;
+                                int day_num = DateTime.DaysInMonth(year, month);
+                                if (day > day_num)
+                                {
+                                    day = day_num;
+                                }
+
+                                String endDate = year + "-" + month_str + "-" + day;
+                            }
+                            <label for="start">Start date:</label>
+                            <input asp-for="date" type="date" id="date" name="date"
+                                   value="@System.DateTime.Today.ToString("yyyy-MM-dd")"
+                                   min="@startdate" max="@endDate">
+                        </div>
+
+                        <div class="form-group" id="sessionGroup">
+                            <label for="exampleFormControlSelect3">Session</label>
+                            <select asp-for="session" class="form-control" id="exampleFormControlSelect3">
+                                <option value="12:00">12:00</option>
+                                <option value="15:00">15:00</option>
+                                <option value="18:00">18:00</option>
+                            </select>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-success">Continue</button>
+
+                    </form>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>

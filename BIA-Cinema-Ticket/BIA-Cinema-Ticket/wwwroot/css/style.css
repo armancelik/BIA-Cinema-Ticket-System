@@ -1,0 +1,89 @@
+body {
+	background-image: url(../pic/7fcf7cf717013f6bba4d6d2922febf74.jpg);
+	background-repeat:no-repeat;
+	background-size:cover;
+	margin-top:auto;
+}
+.login-form label {
+	font-size: 12px;
+	color: #fff;
+}
+.login-form {
+	position: relative;
+	z-index: 1;
+	padding: 57px 24px;
+	border-radius: 35px;
+	box-shadow: 2px 5px 10px 10px #00000047;
+	background-color: #101010a8;
+	margin-top: 10%;
+	animation-name: login;
+	animation-duration: 4s;
+}
+.text-muted {
+	color: #fff!important;
+}
+.login-form h2 {
+	position: relative;
+	top: -10px;
+}
+.form-control1{
+	display: block;
+	width: 100%;
+	height: calc(1.5em + .75rem + 2px);
+	font-size: 0.9rem;
+	font-weight: 400;
+	line-height: 1.5;
+	color: #eaecef;
+	background-color: #08082b0f;
+	background-clip: padding-box;
+	border-top: none;
+	border-left: none;
+	border-right: none;
+	border-bottom: 1px solid #fff;
+	border-radius: 0rem;
+	transition: border-color .15s ease-in-out , box-shadow .15s ease-in-out;
+}
+.btn-danger {
+	color: #fff;
+	background-color: #ff006a;
+	border: 2px solid #ef0063;
+	padding: 7px 38px;
+	font-size: 16px;
+	border-radius: 100px;
+}
+.login-circle {
+	position: relative;
+	top: 57px;
+	color: #ff006a;
+	z-index: 2;	
+}
+.signin-circle {
+	position: relative;
+	top: 22px;
+	color: #ff006a;
+	z-index: 2;
+}
+.signin-form {
+	position: relative;
+	z-index: 1;
+	padding: 57px 24px;
+	border-radius: 60px;
+	box-shadow: 2px 5px 10px 10px #00000047;
+	background-color: #101010a8;
+	animation-name: login;
+	animation-duration: 4s;
+}
+.signin-form label {
+	font-size: 12px;
+	color: #fff;
+}
+.signin-form h2 {
+	position: relative;
+	top: -10px;
+}
+@keyframes login{
+	0% {
+		transform: translateY(270px);
+	}
+}
+
