@@ -20,7 +20,7 @@ namespace BIA_Cinema_Ticket.Controllers
         SqlCommand com = new SqlCommand();
         SqlDataReader dataReader;
 
-        SqlConnection connection = new SqlConnection(@"Data Source=PHOENIX;Initial Catalog=BIA;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
+        SqlConnection connection = new SqlConnection(@"Data Source=DESKTOP-9DIHVTH;Initial Catalog=BIA;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
 
         public List<Ticket> FetchTickets(String commandText)
         {

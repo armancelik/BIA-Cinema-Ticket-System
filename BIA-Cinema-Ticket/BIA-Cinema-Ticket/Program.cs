@@ -22,5 +22,6 @@ namespace BIA_Cinema_Ticket
                 {
                     webBuilder.UseStartup<Startup>();
                 });
+        //deneme
     }
 }

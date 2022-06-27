@@ -461,11 +461,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\idris\\Desktop\\BIA-Cinema-Ticket\\BIA-Cinema-Ticket\\BIA-Cinema-Ticket.csproj",
+      "projectUniqueName": "C:\\Users\\idris\\Source\\Repos\\armancelik\\BIA-Cinema-Ticket-System\\BIA-Cinema-Ticket\\BIA-Cinema-Ticket\\BIA-Cinema-Ticket.csproj",
       "projectName": "BIA-Cinema-Ticket",
-      "projectPath": "C:\\Users\\idris\\Desktop\\BIA-Cinema-Ticket\\BIA-Cinema-Ticket\\BIA-Cinema-Ticket.csproj",
+      "projectPath": "C:\\Users\\idris\\Source\\Repos\\armancelik\\BIA-Cinema-Ticket-System\\BIA-Cinema-Ticket\\BIA-Cinema-Ticket\\BIA-Cinema-Ticket.csproj",
       "packagesPath": "C:\\Users\\idris\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\idris\\Desktop\\BIA-Cinema-Ticket\\BIA-Cinema-Ticket\\obj\\",
+      "outputPath": "C:\\Users\\idris\\Source\\Repos\\armancelik\\BIA-Cinema-Ticket-System\\BIA-Cinema-Ticket\\BIA-Cinema-Ticket\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",

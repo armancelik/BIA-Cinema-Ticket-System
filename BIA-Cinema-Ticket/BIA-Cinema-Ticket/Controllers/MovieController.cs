@@ -15,7 +15,7 @@ namespace BIA_Cinema_Ticket.Controllers
         public static SqlCommand com = new SqlCommand();
         public static SqlDataReader movieReader;
 
-        public static SqlConnection connection = new SqlConnection(@"Data Source=PHOENIX;Initial Catalog=BIA;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
+        public static SqlConnection connection = new SqlConnection(@"Data Source=DESKTOP-9DIHVTH;Initial Catalog=BIA;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
 
         public static Movie movie;
         public List<Movie> FetchMovies(String commandText)

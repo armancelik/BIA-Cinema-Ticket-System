@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "94KlcNnrBqIvXjIduVJlhVO7Zn9tozjbBNkpHtYyRi8EQS7dNod7eBTPOSmeT6vki2zUS1cn6cc0o+ckIDETvg==",
+  "dgSpecHash": "OOi+zj6urhrnGMo2prWBYj6cn8TwcvSAALLjMLUH6uomYdzKdvREgFqB+K8FniYtdi+hUc2Sx7IY2LFks5tYEw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\idris\\Desktop\\BIA-Cinema-Ticket\\BIA-Cinema-Ticket\\BIA-Cinema-Ticket.csproj",
+  "projectFilePath": "C:\\Users\\idris\\Source\\Repos\\armancelik\\BIA-Cinema-Ticket-System\\BIA-Cinema-Ticket\\BIA-Cinema-Ticket\\BIA-Cinema-Ticket.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\idris\\.nuget\\packages\\microsoft.netcore.platforms\\3.1.0\\microsoft.netcore.platforms.3.1.0.nupkg.sha512",
     "C:\\Users\\idris\\.nuget\\packages\\microsoft.win32.registry\\4.7.0\\microsoft.win32.registry.4.7.0.nupkg.sha512",
