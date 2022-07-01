@@ -20,11 +20,14 @@ namespace BIA_Cinema_Ticket.Controllers
         SqlCommand com = new SqlCommand();
         SqlDataReader dataReader;
 
-        SqlConnection connection = new SqlConnection(@"Data Source=DESKTOP-9DIHVTH;Initial Catalog=BIA;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
+        SqlConnection connection = new SqlConnection(@"Data Source=PARTTIME01-PC\INSTANCE2019;Initial Catalog=BIA;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
 
         public List<Ticket> FetchTickets(String commandText)
         {
             List<Ticket> tickets = new List<Ticket>();
+
+
+            SqlDataReader dataReader;
 
             try
             {
@@ -51,10 +54,10 @@ namespace BIA_Cinema_Ticket.Controllers
                         cardValidDate = dataReader["cardValidDate"].ToString(),
                         cardCVV = dataReader["cardCVV"].ToString(),
                         price = (int)dataReader["price"],
-                        cinemaName=dataReader["cinemaName"].ToString(),
-                        movieName=dataReader["movieName"].ToString(),
-                        name=dataReader["name"].ToString(),
-                        surname=dataReader["surname"].ToString()
+                        cinemaName = dataReader["cinemaName"].ToString(),
+                        movieName = dataReader["movieName"].ToString(),
+                        name = dataReader["name"].ToString(),
+                        surname = dataReader["surname"].ToString()
                     });
                 }
 
@@ -64,7 +67,7 @@ namespace BIA_Cinema_Ticket.Controllers
             {
                 throw e;
             }
-            
+
 
             return tickets;
         }
@@ -72,9 +75,8 @@ namespace BIA_Cinema_Ticket.Controllers
         {
             List<Cinema> cinemas = new List<Cinema>();
 
-            try
-            {
-                connection.Open();
+
+                 connection.Open();
                 com.Connection = connection;
                 com.CommandText = commandText;
 
@@ -91,12 +93,9 @@ namespace BIA_Cinema_Ticket.Controllers
                     });
                 }
 
+
                 connection.Close();
-            }
-            catch (Exception e)
-            {
-                throw e;
-            }
+           
 
             return cinemas;
         }
@@ -122,7 +121,7 @@ namespace BIA_Cinema_Ticket.Controllers
 
             List<string> cities = new List<string>();
 
-            foreach(Cinema cinema in cinemas)
+            foreach (Cinema cinema in cinemas)
             {
                 if (!cities.Contains(cinema.city))
                     cities.Add(cinema.city);
@@ -144,7 +143,7 @@ namespace BIA_Cinema_Ticket.Controllers
                 "join [BIA].[dbo].[Seat] s on t.seat_ID = s.seat_ID JOIN [BIA].[dbo].[Cinema] c " +
                 "on t.cinema_ID = c.cinema_ID JOIN [BIA].[dbo].[User] u on t.user_ID = u.user_ID " +
                 "JOIN [BIA].[dbo].[Movie] m ON t.movie_ID = m.movie_ID WHERE t.movie_ID = " + tempTicket.movie_ID +
-                " and t.cinema_ID = " + ticket.cinema_ID + " and t.date = '" + ticket.date.ToString("yyyy'/'MM'/'dd") + 
+                " and t.cinema_ID = " + ticket.cinema_ID + " and t.date = '" + ticket.date.ToString("yyyy'/'MM'/'dd") +
                 "' and t.session = '" + ticket.session + "'";
             List<Ticket> tickets = FetchTickets(commandText);
 
@@ -176,27 +175,58 @@ namespace BIA_Cinema_Ticket.Controllers
 
             return RedirectToAction("ChooseSeat", "Ticket");
         }
+        //public static void CrediteCardControl(Ticket ticket)
+        //{
+        //    string cardNumber2 = ticket.cardNumber;
+        //    string result = cardNumber2.Replace(" ", "");
+        //    ticket.cardNumber = result;
+
+        //    string cardValiDate2 = ticket.cardValidDate;
+        //    result = cardValiDate2.Replace("/", "");
+        //    result = "20" + result;
+        //    ticket.cardValidDate = result;
+
+        //}
+        public static string CrediteCardControlCardNumber(string cardNumber)
+        {
+
+            return cardNumber.Replace(" ", "");
+        }
+
+        public static string CrediteCardControlCardValidDate(string cardValidDate)
+        {
+            return cardValidDate.Replace("/", ".20");
+        }
 
         public IActionResult PaymentTicket()
         {
-            if(choosenSeats.Count() == 0)
+            if (choosenSeats.Count() == 0)
             {
                 ViewBag.errorMassage = "Please choose a seat";
-                return RedirectToAction("chooseseat","ticket");
+                return RedirectToAction("chooseseat", "ticket");
             }
 
             return View();
         }
+        
 
         [HttpPost]
-        public IActionResult saveTicket(Ticket ticket)
+        public IActionResult SaveTicket(Ticket ticket)
         {
+
+            //
+            //soru2 - 2 numaralı hata
+            //
+            
+            
             foreach (int seatID in choosenSeats)
             {
+                
+                
                 string cmd = "Insert Into [dbo].[Ticket](cinema_ID, movie_ID, user_ID, seat_ID, date, session, cardOwnerName, " +
-                    "cardNumber, cardValidDate, cardCVV, price) values ('" + tempTicket.cinema_ID + "','" + tempTicket.movie_ID + "','" + UserController.currentUser.user_ID + 
-                    "','" + seatID + "','" + tempTicket.date.ToString("yyyy-MM-dd") + "','" + tempTicket.session + "','" + ticket.cardOwnerName + 
-                    "','" + ticket.cardNumber  +"','" + ticket.cardValidDate + "','" + ticket.cardCVV + "','"+ 20 +"');";
+                    "cardNumber, cardValidDate, cardCVV, price) values ('" + tempTicket.cinema_ID + "','" + tempTicket.movie_ID + "','" + UserController.currentUser.user_ID +
+                    "','" + seatID + "','" + tempTicket.date.ToString("yyyy-MM-dd") + "','" + tempTicket.session + "','" + ticket.cardOwnerName +
+                    "','" + CrediteCardControlCardNumber(ticket.cardNumber) + "','" + CrediteCardControlCardValidDate(ticket.cardValidDate) + "','" + ticket.cardCVV + "','" + 20 + "');";
                 connection.Open();
                 com = connection.CreateCommand();
                 com.CommandType = CommandType.Text;
@@ -215,7 +245,7 @@ namespace BIA_Cinema_Ticket.Controllers
             string cmd = "SELECT * FROM [BIA].[dbo].[Ticket] t " +
                 "join [BIA].[dbo].[Seat] s on t.seat_ID = s.seat_ID JOIN [BIA].[dbo].[Cinema] c" +
                 "on t.cinema_ID = c.cinema_ID JOIN [BIA].[dbo].[User] u on t.user_ID = u.user_ID";
-            List<Ticket>tickets = new TicketController().FetchTickets(cmd);
+            List<Ticket> tickets = new TicketController().FetchTickets(cmd);
 
             return tickets;
         }

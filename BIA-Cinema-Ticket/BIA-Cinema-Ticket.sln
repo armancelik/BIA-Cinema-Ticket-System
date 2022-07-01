@@ -1,20 +1,31 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.31911.196
+# Visual Studio Version 17
+VisualStudioVersion = 17.2.32616.157
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BIA-Cinema-Ticket", "BIA-Cinema-Ticket\BIA-Cinema-Ticket.csproj", "{BAADC6E9-7BFF-45B3-806A-A80ABEDEAC17}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Test_BIA-Cinema-Ticket", "Test_BIA-Cinema-Ticket\Test_BIA-Cinema-Ticket.csproj", "{D9E13B63-634C-444E-A568-F0CD55FC1C72}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
+		multiTemplate|Any CPU = multiTemplate|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{BAADC6E9-7BFF-45B3-806A-A80ABEDEAC17}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{BAADC6E9-7BFF-45B3-806A-A80ABEDEAC17}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BAADC6E9-7BFF-45B3-806A-A80ABEDEAC17}.multiTemplate|Any CPU.ActiveCfg = multiTemplate|Any CPU
+		{BAADC6E9-7BFF-45B3-806A-A80ABEDEAC17}.multiTemplate|Any CPU.Build.0 = multiTemplate|Any CPU
 		{BAADC6E9-7BFF-45B3-806A-A80ABEDEAC17}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BAADC6E9-7BFF-45B3-806A-A80ABEDEAC17}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D9E13B63-634C-444E-A568-F0CD55FC1C72}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D9E13B63-634C-444E-A568-F0CD55FC1C72}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D9E13B63-634C-444E-A568-F0CD55FC1C72}.multiTemplate|Any CPU.ActiveCfg = multiTemplate|Any CPU
+		{D9E13B63-634C-444E-A568-F0CD55FC1C72}.multiTemplate|Any CPU.Build.0 = multiTemplate|Any CPU
+		{D9E13B63-634C-444E-A568-F0CD55FC1C72}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D9E13B63-634C-444E-A568-F0CD55FC1C72}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

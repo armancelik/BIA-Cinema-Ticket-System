@@ -1,6 +1,7 @@
 ﻿@model Ticket
 @{
     int price = BIA_Cinema_Ticket.Controllers.TicketController.choosenSeats.Count() * 20;
+     
 }
 
 <div align="center">
@@ -22,30 +23,71 @@
                             </div>
                             <div class="d-flex flex-column">
                                 <p class="text-left mb-1">Card Number</p>
-                                <input asp-for="cardNumber" class="mb-3" id="CardNumber" type="number" placeholder="1234 5678 4356 4578" required>
+                                <input asp-for="cardNumber" class="mb-3" id="CardNumber" type="text" placeholder="xxxx-xxxx-xxxx-xxxx" size="18" id="cr_no" minlength="19" maxlength="19" required>
                             </div>
                             <div class="d-flex flex-column">
                                 <p class="text-left mb-1">Expiry</p>
-                                <input asp-for="cardValidDate" class="mb-3" type="text" placeholder="MM/YYYY" required>
+                                <input asp-for="cardValidDate" class="mb-3" id="CardValidDate"  type="text"placeholder="MM/YY" size="6" id="exp" minlength="5" maxlength="5" required>
                             </div>
                             <div class="d-flex flex-column">
                                 <p class="text-left mb-1">CVV/CVC</p>
                                 <input asp-for="cardCVV" class="mb-3 pt-2 " id="CVC" type="number" placeholder="***" onclick="" pattern="/^[0-9]{3}$/" required>
                             </div>
+                           
                             <script>
-                                var CardNumber = document.getElementById("CardNumber");
-                                var CardNumberControl = /^[0-9]{16}$/;
-                                function validateCardNumber() {
-                                    if (CardNumber.value.match(CardNumberControl)) {
-                                        CardNumber.setCustomValidity('');
-                                    } else {
-                                        CardNumber.setCustomValidity('Size must be 16!');
+                            //For Card Number formatted input
+                            var cardNum = document.getElementById('CardNumber');
+                            cardNum.onkeyup = function (e) {
+                                if (this.value == this.lastValue) return;
+                                var caretPosition = this.selectionStart;
+                                var sanitizedValue = this.value.replace(/[^0-9]/gi, '');
+                                var parts = [];
+    
+                                for (var i = 0, len = sanitizedValue.length; i < len; i += 4) {
+                                    parts.push(sanitizedValue.substring(i, i + 4));
+                                }
+    
+                                for (var i = caretPosition - 1; i >= 0; i--) {
+                                    var c = this.value[i];
+                                    if (c < '0' || c > '9') {
+                                        caretPosition--;
                                     }
                                 }
-                                CardNumber.onchange = validateCardNumber;
-                                CardNumber.onkeyup = validateCardNumber;
+                                caretPosition += Math.floor(caretPosition / 4);
+    
+                                this.value = this.lastValue = parts.join(' ');
+                                this.selectionStart = this.selectionEnd = caretPosition;
+                            }
                             </script>
+
                             <script>
+                            //For Date formatted input
+                            var expDate = document.getElementById('CardValidDate');
+                            expDate.onkeyup = function (e) {
+                                if (this.value == this.lastValue) return;
+                                var caretPosition = this.selectionStart;
+                                var sanitizedValue = this.value.replace(/[^0-9]/gi, '');
+                                var parts = [];
+    
+                                for (var i = 0, len = sanitizedValue.length; i < len; i += 2) {
+                                    parts.push(sanitizedValue.substring(i, i + 2));
+                                }
+    
+                                for (var i = caretPosition - 1; i >= 0; i--) {
+                                    var c = this.value[i];
+                                    if (c < '0' || c > '9') {
+                                        caretPosition--;
+                                    }
+                                }
+                                caretPosition += Math.floor(caretPosition / 2);
+    
+                                this.value = this.lastValue = parts.join('/');
+                                this.selectionStart = this.selectionEnd = caretPosition;
+                            }
+                            </script>
+
+                            <script>
+                                
                                 var cvc = document.getElementById("CVC");
                                 var cvcControl = /^[0-9]{3}$/;
                                 function validateCVC() {
@@ -57,8 +99,10 @@
                                 }
                                 cvc.onchange = validateCVC;
                                 cvc.onkeyup = validateCVC;
+                                
                             </script>
-
+                            
+                            
                             <button type="submit" class="btn btn-success">Continue</button>
 
                         </form>

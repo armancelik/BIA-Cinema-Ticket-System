@@ -15,7 +15,7 @@ namespace BIA_Cinema_Ticket.Controllers
         public static SqlCommand com = new SqlCommand();
         public static SqlDataReader movieReader;
 
-        public static SqlConnection connection = new SqlConnection(@"Data Source=DESKTOP-9DIHVTH;Initial Catalog=BIA;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
+        public static SqlConnection connection = new SqlConnection(@"Data Source=PARTTIME01-PC\INSTANCE2019;Initial Catalog=BIA;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
 
         public static Movie movie;
         public List<Movie> FetchMovies(String commandText)
@@ -48,6 +48,7 @@ namespace BIA_Cinema_Ticket.Controllers
                 SqlDataReader categoryReader = com.ExecuteReader();
 
                 Hashtable categories = new Hashtable();
+
 
                 while (categoryReader.Read())
                 {
@@ -158,7 +159,7 @@ namespace BIA_Cinema_Ticket.Controllers
         {
             SqlCommand secondCommand = new SqlCommand();
 
-            SqlConnection secondConnection = new SqlConnection(@"Data Source=PHOENIX;Initial Catalog=BIA;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
+            SqlConnection secondConnection = new SqlConnection(@"Data Source=PARTTIME01-PC\INSTANCE2019;Initial Catalog=BIA;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
 
             List<Review> comments = new List<Review>();
             try
@@ -210,7 +211,7 @@ namespace BIA_Cinema_Ticket.Controllers
         {
             SqlCommand secondCommand = new SqlCommand();
 
-            SqlConnection secondConnection = new SqlConnection(@"Data Source=PHOENIX;Initial Catalog=BIA;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
+            SqlConnection secondConnection = new SqlConnection(@"Data Source=PARTTIME01-PC\INSTANCE2019;Initial Catalog=BIA;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
 
             List<Review> rates = new List<Review>();
             try
@@ -256,7 +257,11 @@ namespace BIA_Cinema_Ticket.Controllers
 
             return rates;
         }
-
+        /// <summary>
+        /// /
+        /// </summary>
+        /// <param name="movie_ID "></param>
+        /// <returns></returns>
         public IActionResult MovieDetails(int movie_ID)
         {
             String query = "SELECT * FROM [BIA].[dbo].[Movie] WHERE movie_ID = " + movie_ID;

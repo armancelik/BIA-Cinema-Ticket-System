@@ -1,25 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\idris\\Source\\Repos\\armancelik\\BIA-Cinema-Ticket-System\\BIA-Cinema-Ticket\\BIA-Cinema-Ticket\\BIA-Cinema-Ticket.csproj": {}
+    "C:\\Users\\arman.celik\\Source\\Repos\\armancelik\\BIA-Cinema-Ticket-System\\BIA-Cinema-Ticket\\BIA-Cinema-Ticket\\BIA-Cinema-Ticket.csproj": {}
   },
   "projects": {
-    "C:\\Users\\idris\\Source\\Repos\\armancelik\\BIA-Cinema-Ticket-System\\BIA-Cinema-Ticket\\BIA-Cinema-Ticket\\BIA-Cinema-Ticket.csproj": {
+    "C:\\Users\\arman.celik\\Source\\Repos\\armancelik\\BIA-Cinema-Ticket-System\\BIA-Cinema-Ticket\\BIA-Cinema-Ticket\\BIA-Cinema-Ticket.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\idris\\Source\\Repos\\armancelik\\BIA-Cinema-Ticket-System\\BIA-Cinema-Ticket\\BIA-Cinema-Ticket\\BIA-Cinema-Ticket.csproj",
+        "projectUniqueName": "C:\\Users\\arman.celik\\Source\\Repos\\armancelik\\BIA-Cinema-Ticket-System\\BIA-Cinema-Ticket\\BIA-Cinema-Ticket\\BIA-Cinema-Ticket.csproj",
         "projectName": "BIA-Cinema-Ticket",
-        "projectPath": "C:\\Users\\idris\\Source\\Repos\\armancelik\\BIA-Cinema-Ticket-System\\BIA-Cinema-Ticket\\BIA-Cinema-Ticket\\BIA-Cinema-Ticket.csproj",
-        "packagesPath": "C:\\Users\\idris\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\idris\\Source\\Repos\\armancelik\\BIA-Cinema-Ticket-System\\BIA-Cinema-Ticket\\BIA-Cinema-Ticket\\obj\\",
+        "projectPath": "C:\\Users\\arman.celik\\Source\\Repos\\armancelik\\BIA-Cinema-Ticket-System\\BIA-Cinema-Ticket\\BIA-Cinema-Ticket\\BIA-Cinema-Ticket.csproj",
+        "packagesPath": "C:\\Users\\arman.celik\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\arman.celik\\Source\\Repos\\armancelik\\BIA-Cinema-Ticket-System\\BIA-Cinema-Ticket\\BIA-Cinema-Ticket\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-        ],
         "configFilePaths": [
-          "C:\\Users\\idris\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Users\\arman.celik\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -68,7 +63,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.408\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.301\\RuntimeIdentifierGraph.json"
         }
       }
     }

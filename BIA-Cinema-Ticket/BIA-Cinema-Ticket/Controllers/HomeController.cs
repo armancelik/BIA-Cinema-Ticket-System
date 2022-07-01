@@ -20,8 +20,10 @@ namespace BIA_Cinema_Ticket.Controllers
         {
             _logger = logger;
         }
+        
         public IActionResult Index()
         {
+                                
             String cmd = "SELECT * FROM[BIA].[dbo].[Movie] where viewStatus = 'in the vision'";
             List<Movie> movies = movieController.FetchMovies(cmd);
             ViewBag.inTheaters = movies;

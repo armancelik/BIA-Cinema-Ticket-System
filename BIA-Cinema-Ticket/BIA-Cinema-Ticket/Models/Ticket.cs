@@ -27,5 +27,7 @@ namespace BIA_Cinema_Ticket.Models
         public String cardValidDate { get; set; }
         public String cardCVV { get; set; }
         public int price { get; set; }
+
+
     }
 }

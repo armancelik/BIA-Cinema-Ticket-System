@@ -3,6 +3,7 @@
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
     <RootNamespace>BIA_Cinema_Ticket</RootNamespace>
+    <Configurations>Debug;Release;multiTemplate</Configurations>
   </PropertyGroup>
 
   <ItemGroup>
