@@ -1,5 +1,6 @@
 ﻿using BIA_Cinema_Ticket.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -12,10 +13,13 @@ namespace BIA_Cinema_Ticket.Controllers
 {
     public class MovieController : Controller
     {
-        public static SqlCommand com = new SqlCommand();
-        public static SqlDataReader movieReader;
+        private IConfiguration Configuration;
+        private static SqlCommand com = new SqlCommand();
+        private static SqlDataReader movieReader;
+        
+        private static SqlConnection connection = new SqlConnection(Program.ConnectionString);
 
-        public static SqlConnection connection = new SqlConnection(@"Data Source=PARTTIME01-PC\INSTANCE2019;Initial Catalog=BIA;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
+        //public static SqlConnection connection = new SqlConnection(@"Data Source=PARTTIME01-PC\INSTANCE2019;Initial Catalog=BIA;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
 
         public static Movie movie;
         public List<Movie> FetchMovies(String commandText)

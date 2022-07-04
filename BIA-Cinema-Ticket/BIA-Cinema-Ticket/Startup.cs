@@ -3,9 +3,11 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Hosting;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -13,12 +15,13 @@ namespace BIA_Cinema_Ticket
 {
     public class Startup
     {
+        public IConfiguration Configuration { get; }
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
         }
 
-        public IConfiguration Configuration { get; }
+        
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
@@ -26,9 +29,30 @@ namespace BIA_Cinema_Ticket
             services.AddControllersWithViews();
         }
 
+        //public static string ConnectionString { get; set; }
+        
+        //public static string ConfigurationFileName { get; set; } = "appsettings.json";
+
+        /// <summary>
+        /// Current environment
+        /// </summary>
+
+        //private static IConfigurationRoot InitConfiguration()
+        //{
+
+        //    var builder = new ConfigurationBuilder()
+        //        .SetBasePath(Directory.GetCurrentDirectory())
+        //        .AddJsonFile(ConfigurationFileName);
+
+        //    return builder.Build();
+
+        //}
+        
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            Program.ConnectionString = Configuration.GetConnectionString("DevelopmentConnection"); //appjson connection string
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -44,6 +68,7 @@ namespace BIA_Cinema_Ticket
 
             app.UseRouting();
 
+            
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

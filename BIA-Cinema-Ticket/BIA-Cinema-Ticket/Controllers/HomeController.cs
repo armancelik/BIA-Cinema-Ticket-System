@@ -1,5 +1,6 @@
 ﻿using BIA_Cinema_Ticket.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
@@ -7,24 +8,30 @@ using System.Data.SqlClient;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Data;
 
 namespace BIA_Cinema_Ticket.Controllers
 {
     public class HomeController : Controller
     {
         MovieController movieController = new MovieController();
+        public IConfiguration Configuration;
 
         private readonly ILogger<HomeController> _logger;
 
         public HomeController(ILogger<HomeController> logger)
         {
             _logger = logger;
+            
         }
         
         public IActionResult Index()
         {
-                                
-            String cmd = "SELECT * FROM[BIA].[dbo].[Movie] where viewStatus = 'in the vision'";
+            
+            String cmd;
+          
+         
+            cmd = "SELECT * FROM[BIA].[dbo].[Movie] where viewStatus = 'in the vision'";
             List<Movie> movies = movieController.FetchMovies(cmd);
             ViewBag.inTheaters = movies;
             cmd = "SELECT * FROM[BIA].[dbo].[Movie] where viewStatus = 'coming soon'";

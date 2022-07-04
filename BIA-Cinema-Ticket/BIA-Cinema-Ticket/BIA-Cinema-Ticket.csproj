@@ -13,6 +13,15 @@
   <ItemGroup>
     <Content Remove="Views\Admin\Index.cshtml" />
     <Content Remove="Views\User\Index.cshtml" />
+    <Content Remove="web.config" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <_ContentIncludedByDefault Remove="web.config" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="web.config" />
   </ItemGroup>
 
   <ItemGroup>

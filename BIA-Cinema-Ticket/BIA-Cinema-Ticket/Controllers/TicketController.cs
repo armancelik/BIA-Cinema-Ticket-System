@@ -5,7 +5,8 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
-using System.Threading.Tasks;
+using Microsoft.Extensions.Configuration;
+using SqlServerConnectionLibrary;
 
 namespace BIA_Cinema_Ticket.Controllers
 {
@@ -16,16 +17,28 @@ namespace BIA_Cinema_Ticket.Controllers
         public static Ticket tempTicket = new Ticket();
         public static List<int> takenSeats = new List<int>();
         public static List<int> choosenSeats = new List<int>();
+        
 
         SqlCommand com = new SqlCommand();
         SqlDataReader dataReader;
+        SqlConnection connection;
 
-        SqlConnection connection = new SqlConnection(@"Data Source=PARTTIME01-PC\INSTANCE2019;Initial Catalog=BIA;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
+
+
+
+
+
+
 
         public List<Ticket> FetchTickets(String commandText)
         {
-            List<Ticket> tickets = new List<Ticket>();
 
+            //Helper.Initializer();
+            //var connectionString = Helper.ConnectionString;
+            connection = new SqlConnection(Program.ConnectionString);
+
+
+            List<Ticket> tickets = new List<Ticket>();
 
             SqlDataReader dataReader;
 
@@ -73,10 +86,16 @@ namespace BIA_Cinema_Ticket.Controllers
         }
         public List<Cinema> FetchCinemas(String commandText)
         {
+
+            //Helper.Initializer();
+            //var connectionString = Helper.ConnectionString;
+           connection = new SqlConnection(Program.ConnectionString);
+
+
             List<Cinema> cinemas = new List<Cinema>();
 
-
-                 connection.Open();
+            
+                connection.Open();
                 com.Connection = connection;
                 com.CommandText = commandText;
 
@@ -213,16 +232,16 @@ namespace BIA_Cinema_Ticket.Controllers
         [HttpPost]
         public IActionResult SaveTicket(Ticket ticket)
         {
-
+            
             //
             //soru2 - 2 numaralı hata
             //
             
-            
+
             foreach (int seatID in choosenSeats)
             {
-                
-                
+
+                connection = new SqlConnection(Program.ConnectionString);
                 string cmd = "Insert Into [dbo].[Ticket](cinema_ID, movie_ID, user_ID, seat_ID, date, session, cardOwnerName, " +
                     "cardNumber, cardValidDate, cardCVV, price) values ('" + tempTicket.cinema_ID + "','" + tempTicket.movie_ID + "','" + UserController.currentUser.user_ID +
                     "','" + seatID + "','" + tempTicket.date.ToString("yyyy-MM-dd") + "','" + tempTicket.session + "','" + ticket.cardOwnerName +
@@ -242,6 +261,7 @@ namespace BIA_Cinema_Ticket.Controllers
 
         public List<Ticket> getAllTickets()
         {
+            
             string cmd = "SELECT * FROM [BIA].[dbo].[Ticket] t " +
                 "join [BIA].[dbo].[Seat] s on t.seat_ID = s.seat_ID JOIN [BIA].[dbo].[Cinema] c" +
                 "on t.cinema_ID = c.cinema_ID JOIN [BIA].[dbo].[User] u on t.user_ID = u.user_ID";
@@ -252,6 +272,9 @@ namespace BIA_Cinema_Ticket.Controllers
 
         public void DeleteTicket(int ticket_ID)
         {
+
+            
+
             String query = "Delete from [dbo].[Ticket] where ticket_ID='" + ticket_ID + "';";
             connection.Open();
             com.Connection = connection;

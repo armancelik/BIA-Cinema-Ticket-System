@@ -14,7 +14,9 @@ namespace BIA_Cinema_Ticket.Controllers
         
         SqlCommand com = new SqlCommand();
         SqlDataReader userReader;
-        SqlConnection con = new SqlConnection(@"Data Source=PARTTIME01-PC\INSTANCE2019;Initial Catalog=BIA;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
+
+        private static SqlConnection con = new SqlConnection(Program.ConnectionString);
+        //SqlConnection con = new SqlConnection(@"Data Source=PARTTIME01-PC\INSTANCE2019;Initial Catalog=BIA;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
 
         public static List<User> users = new List<User>();
 
