@@ -6,7 +6,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using Microsoft.Extensions.Configuration;
-using SqlServerConnectionLibrary;
+
 
 namespace BIA_Cinema_Ticket.Controllers
 {
@@ -33,8 +33,7 @@ namespace BIA_Cinema_Ticket.Controllers
         public List<Ticket> FetchTickets(String commandText)
         {
 
-            //Helper.Initializer();
-            //var connectionString = Helper.ConnectionString;
+            
             connection = new SqlConnection(Program.ConnectionString);
 
 
@@ -91,10 +90,8 @@ namespace BIA_Cinema_Ticket.Controllers
             //var connectionString = Helper.ConnectionString;
            connection = new SqlConnection(Program.ConnectionString);
 
-
             List<Cinema> cinemas = new List<Cinema>();
 
-            
                 connection.Open();
                 com.Connection = connection;
                 com.CommandText = commandText;
@@ -228,7 +225,6 @@ namespace BIA_Cinema_Ticket.Controllers
             return View();
         }
         
-
         [HttpPost]
         public IActionResult SaveTicket(Ticket ticket)
         {
@@ -236,7 +232,6 @@ namespace BIA_Cinema_Ticket.Controllers
             //
             //soru2 - 2 numaralı hata
             //
-            
 
             foreach (int seatID in choosenSeats)
             {

@@ -12,8 +12,9 @@ namespace BIA_Cinema_Ticket
 {
     public class Program
     {
-        private static string _ConnectionString;
-        public static string ConnectionString { 
+        private static string _ConnectionString;   //
+        public static string ConnectionString
+        {     //
             get {
                 return _ConnectionString;
             } set{
@@ -33,6 +34,7 @@ namespace BIA_Cinema_Ticket
                 {
                     webBuilder.UseStartup<Startup>();
                 });
-        //deneme
+      
+      
     }
 }
