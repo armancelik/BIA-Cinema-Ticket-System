@@ -18,7 +18,7 @@ namespace BIA_Cinema_Ticket.Controllers
         private static SqlDataReader movieReader;
         
         private static SqlConnection connection = new SqlConnection(Program.ConnectionString);
-
+        private static SqlConnection secondConnection = new SqlConnection(Program.ConnectionString);
         //public static SqlConnection connection = new SqlConnection(@"Data Source=PARTTIME01-PC\INSTANCE2019;Initial Catalog=BIA;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
 
         public static Movie movie;
@@ -163,7 +163,7 @@ namespace BIA_Cinema_Ticket.Controllers
         {
             SqlCommand secondCommand = new SqlCommand();
 
-            SqlConnection secondConnection = new SqlConnection(@"Data Source=PARTTIME01-PC\INSTANCE2019;Initial Catalog=BIA;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
+            //SqlConnection secondConnection = new SqlConnection(@"Data Source=PARTTIME01-PC\INSTANCE2019;Initial Catalog=BIA;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
 
             List<Review> comments = new List<Review>();
             try
@@ -215,7 +215,7 @@ namespace BIA_Cinema_Ticket.Controllers
         {
             SqlCommand secondCommand = new SqlCommand();
 
-            SqlConnection secondConnection = new SqlConnection(@"Data Source=PARTTIME01-PC\INSTANCE2019;Initial Catalog=BIA;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
+            //SqlConnection secondConnection = new SqlConnection(@"Data Source=PARTTIME01-PC\INSTANCE2019;Initial Catalog=BIA;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
 
             List<Review> rates = new List<Review>();
             try
